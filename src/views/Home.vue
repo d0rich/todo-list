@@ -1,14 +1,24 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Lists/>
   </div>
 </template>
 
 <script>
+import Lists from "@/components/Lists";
+import {mapActions, mapState} from "vuex";
+
 export default {
   name: 'Home',
   components: {
+    Lists
+  },
+  computed:{
+    ...mapState(['lists'])
+  },
+  methods:{
+    ...mapActions(['GetLists', 'CreateList', 'CreatePlan']),
+
   }
 }
 </script>
