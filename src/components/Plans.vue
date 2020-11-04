@@ -3,13 +3,14 @@
     <b-button class="align-self-end m-1" variant="danger" @click="$router.push('/')">Закрыть</b-button>
     <div class="text-center h2">{{list.title}}</div>
     <b-list-group class="plans">
+
       <b-list-group-item v-for="plan in list.plans" :key="plan.id" >
-        <b-checkbox class="row" v-model="plan.complete" >
-          <div class="row no-gutters">
-            <div class="col-2 mx-1">{{plan.title}}</div>
-            <div class="col-3 mx-1">Создано: {{DateToString(plan.created)}}</div>
-          </div>
-        </b-checkbox>
+        <div class="row no-gutters">
+          <b-checkbox class="mx-1" v-model="plan.complete" >
+            {{plan.title}}
+          </b-checkbox>
+          <div class="col-4 mx-1">Создано: {{DateToString(plan.created)}}</div>
+        </div>
       </b-list-group-item>
     </b-list-group>
     <div class="px-1">

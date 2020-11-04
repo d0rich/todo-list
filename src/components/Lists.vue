@@ -2,12 +2,15 @@
   <div class="list-wrap">
     <b-list-group class="lists">
       <b-list-group-item v-for="list in lists" :key="list.id" >
-        <router-link :to="list.link" class="row">
-          <div class="col-2 mx-1">{{list.title}}</div>
-          <div class="col-3 mx-1">Невыполнено: {{list.undone}}</div>
-          <div class="col-3 mx-1">Создано: {{DateToString(list.created)}}</div>
+        <div class="row">
+          <router-link :to="list.link" class="row col-10">
+            <div class="col-2 mx-1">{{list.title}}</div>
+            <div class="col-3 mx-1">Невыполнено: {{list.undone}}</div>
+            <div class="col-3 mx-1">Создано: {{DateToString(list.created)}}</div>
+          </router-link>
           <b-button variant="danger" @click="DelList(list)">Delete</b-button>
-        </router-link>
+        </div>
+
       </b-list-group-item>
     </b-list-group>
     <div class="px-1">
