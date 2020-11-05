@@ -65,6 +65,7 @@ name: "Plans",
   flex-direction: column;
   border: solid #212121 3px;
   border-radius: 10px;
+  max-width: 800px;
 }
 .plans{
   overflow-y: auto;

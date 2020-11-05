@@ -2,13 +2,13 @@
   <div class="list-wrap">
     <b-list-group class="lists">
       <b-list-group-item v-for="list in lists" :key="list.id" >
-        <div class="row">
-          <router-link :to="list.link" class="row col-10">
-            <div class="col-2 mx-1">{{list.title}}</div>
-            <div class="col-3 mx-1">Невыполнено: {{list.undone}}</div>
-            <div class="col-3 mx-1">Создано: {{DateToString(list.created)}}</div>
+        <div class="row no-gutters justify-content-between">
+          <router-link :to="list.link" class="row no-gutters justify-content-between align-items-center">
+            <div class="mx-1">{{list.title}}</div>
+            <div class="mx-1">Невыполнено: {{list.undone}}</div>
+            <div class="mx-1">Создано: {{DateToString(list.created)}}</div>
           </router-link>
-          <b-button variant="danger" @click="DelList(list)">Delete</b-button>
+          <b-button class="mx-1" variant="danger" @click="DelList(list)">Delete</b-button>
         </div>
 
       </b-list-group-item>
@@ -56,6 +56,8 @@ name: "Lists",
 <style scoped>
 .list-wrap{
   height: 80vh;
+  width: 100%;
+  max-width: 800px;
   display: flex;
   flex-direction: column;
   border: solid #212121 3px;

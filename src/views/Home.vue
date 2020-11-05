@@ -22,3 +22,12 @@ export default {
   }
 }
 </script>
+<style>
+.home{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 0 10px;
+}
+</style>

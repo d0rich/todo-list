@@ -20,5 +20,9 @@ export default {
 }
 </script>
 <style lang="scss">
-
+@media screen and (max-width: 500px) {
+  html{
+    font-size: 10pt;
+  }
+}
 </style>
