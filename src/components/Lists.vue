@@ -19,8 +19,9 @@
     >
       <p class="text-danger">{{ErrorModal.message}}</p>
     </b-modal>
+    <b-form-select class="my-3 mx-5" style="width: unset" v-model="filterID" :options="filters"></b-form-select>
     <b-list-group class="lists">
-      <b-list-group-item v-for="list in lists" :key="list.id" :style="`background-color: ${list.color}`" >
+      <b-list-group-item v-for="list in listsFiltered" :key="list.id" :style="`background-color: ${list.color}`" >
         <div class="row no-gutters justify-content-between">
           <router-link :to="list.link" class="row no-gutters justify-content-between align-items-center">
             <div class="mx-1">{{list.title}}</div>
@@ -47,6 +48,12 @@ name: "Lists",
   return{
     newListTitle:'',
     listToDelete: {},
+    filterID: 1,
+    filters:[
+      {value: 1, text: 'Неисполненные'},
+      {value: 2, text: 'Исполненные'},
+      {value: 3, text: 'Все'}
+    ],
     AcceptModal: {
       show: false,
       title: 'Вы уверены в своих действиях?',
@@ -66,7 +73,12 @@ name: "Lists",
   },
   computed:{
     ...mapState(['lists']),
-    ...mapGetters(['onLoad'])
+    ...mapGetters(['onLoad']),
+    listsFiltered(){
+      if (this.filterID === 1) return this.lists.filter(l => l.type === 1 || l.type === 2)
+      if (this.filterID === 2) return this.lists.filter(l => l.type === 3)
+      else return this.lists
+    }
   },
   methods:{
     ...mapActions(['GetLists', 'CreateList', 'DeleteList']),

@@ -29,9 +29,9 @@ export class List{
         return this.plans.filter(plan => !plan.complete).length
     }
     get type(){
-        if (this.plans.length === 0) return 1
-        if (this.undoneLocal > 0) return 2
-        else return 3
+        if (this.plans.length === 0) return 1 //Список без дел
+        if (this.undoneLocal > 0) return 2 //Выполнены не все дела
+        else return 3 //Выполнены все дела
     }
     get color(){
         if (this.type === 1) return 'white'
