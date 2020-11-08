@@ -24,7 +24,13 @@ Vue.mixin({
       let monthPart = `${d.getMonth()}`;
       if(d.getMonth() < 10)
         monthPart = `0${d.getMonth()}`
-      return(`${datePart}/${monthPart}/${d.getFullYear()} ${d.getHours()}:${d.getMinutes()}`)
+      let hours = `${d.getHours()}`;
+      if(d.getHours() < 10)
+        hours = `0${d.getHours()}`
+      let minutes = `${d.getMinutes()}`;
+      if(d.getMinutes() < 10)
+        minutes = `0${d.getMinutes()}`
+      return(`${datePart}/${monthPart}/${d.getFullYear()} ${hours}:${minutes}`)
     }
   }
 })
