@@ -28,14 +28,14 @@ export default new Vuex.Store({
                     res.data.forEach(list => {
                         state.lists.push(new List(list))
                     })
+                    state.listsOnLoad = false
                     resolve()
                 })
                 .catch(err =>{
+                    state.listsOnLoad = false
                     reject(err)
                 })
-                .finally(() => {
-                    state.listsOnLoad = false
-                })
+
         })
 
     },

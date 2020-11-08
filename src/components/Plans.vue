@@ -6,7 +6,7 @@
 
       <b-list-group-item v-for="plan in list.plans" :key="plan.id" >
         <div class="row no-gutters justify-content-between">
-          <b-checkbox class="mx-1" v-model="plan.complete" >
+          <b-checkbox class="mx-1" @change="plan.MarkPlanComplete()" v-model="plan.complete" >
             {{plan.title}}
           </b-checkbox>
           <div class="mx-1">Создано: {{DateToString(plan.created)}}</div>
@@ -44,6 +44,8 @@ name: "Plans",
       }
       else{
         let list = this.lists.find(list => list.id === this.$route.params.list_id)
+        console.log(this.lists)
+        console.log(list)
         if (list) return list
         else return new List({title: 'Ошибка: список не найден'})
       }
