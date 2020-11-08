@@ -5,11 +5,11 @@
     <b-list-group class="plans">
 
       <b-list-group-item v-for="plan in list.plans" :key="plan.id" >
-        <div class="row no-gutters">
+        <div class="row no-gutters justify-content-between">
           <b-checkbox class="mx-1" v-model="plan.complete" >
             {{plan.title}}
           </b-checkbox>
-          <div class="col-4 mx-1">Создано: {{DateToString(plan.created)}}</div>
+          <div class="mx-1">Создано: {{DateToString(plan.created)}}</div>
         </div>
       </b-list-group-item>
     </b-list-group>
@@ -21,8 +21,9 @@
 </template>
 
 <script>
-import {mapState, mapActions} from 'vuex'
+import {mapState, mapActions, mapGetters} from 'vuex'
 import {Plan} from "@/classes";
+import {List} from "@/classes";
 export default {
 name: "Plans",
   data(){
@@ -36,8 +37,16 @@ name: "Plans",
   },
   computed:{
     ...mapState(['lists']),
+    ...mapGetters(['onLoad']),
     list(){
-      return this.lists.find(list => list.id === this.$route.params.list_id)
+      if (this.onLoad){
+        return new List({title: 'Загрузка...'})
+      }
+      else{
+        let list = this.lists.find(list => list.id === this.$route.params.list_id)
+        if (list) return list
+        else return new List({title: 'Ошибка: список не найден'})
+      }
     }
   },
   methods:{

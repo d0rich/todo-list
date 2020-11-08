@@ -9,7 +9,8 @@ export default new Vuex.Store({
   state: {
     todoUrl: 'https://sa-mysite-anchousi.herokuapp.com',
     plans: [],
-    lists: []
+    lists: [],
+    listsOnLoad: false
   },
   mutations: {
       DeleteListLocally(state, list = new List({})){
@@ -19,6 +20,7 @@ export default new Vuex.Store({
   actions: {
     GetLists({state}){
         return new Promise((resolve,reject) => {
+            state.listsOnLoad = true
             axios.get(`${state.todoUrl}/api/GetLists?count=99`)
                 .then(res => {
                     console.log(res)
@@ -30,6 +32,9 @@ export default new Vuex.Store({
                 })
                 .catch(err =>{
                     reject(err)
+                })
+                .finally(() => {
+                    state.listsOnLoad = false
                 })
         })
 
@@ -73,6 +78,9 @@ export default new Vuex.Store({
     }
   },
     getters:{
+      onLoad(state){
+          return state.listsOnLoad
+      }
     },
   modules: {
   }

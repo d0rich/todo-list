@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import {mapState, mapActions, mapMutations} from 'vuex'
+import {mapState, mapGetters, mapActions, mapMutations} from 'vuex'
 import {List} from "@/classes";
 export default {
 name: "Lists",
@@ -31,7 +31,8 @@ name: "Lists",
   }
   },
   computed:{
-    ...mapState(['lists'])
+    ...mapState(['lists']),
+    ...mapGetters(['onLoad'])
   },
   methods:{
     ...mapActions(['GetLists', 'CreateList', 'DeleteList']),

@@ -1,5 +1,6 @@
 import axios from 'axios'
 import {Plan} from "@/classes/plan";
+import store from '@/store'
 export class List{
     constructor({ id = 1,
                     title = '',
@@ -16,7 +17,7 @@ export class List{
     }
 
     GetPlans(){
-        axios.get(`https://sa-mysite-anchousi.herokuapp.com/api/GetPlans/${this.id}`).then(res => {
+        axios.get(`${store.state.todoUrl}/api/GetPlans/${this.id}`).then(res => {
             this.plans = []
             res.data.forEach(plan => {
                 this.plans.push(new Plan(plan))
