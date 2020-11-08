@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {Plan} from "@/classes/plan";
+import {Plan, Sort} from "@/classes";
 import store from '@/store'
 export class List{
     constructor({ id = 1,
@@ -22,6 +22,7 @@ export class List{
             res.data.forEach(plan => {
                 this.plans.push(new Plan(plan))
             })
+            this.plans.sort(Sort.byAttr('created'))
         })
     }
 

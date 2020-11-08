@@ -40,7 +40,7 @@ name: "Lists",
     NewList(){
       this.CreateList(this.newListTitle)
         .then(() => {
-          setTimeout(this.GetLists,1000)
+          this.GetLists()
           this.newListTitle = ''
         })
     },

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
-import {List, Plan} from "@/classes";
+import {List, Plan, Sort} from "@/classes";
 
 Vue.use(Vuex)
 
@@ -28,6 +28,7 @@ export default new Vuex.Store({
                     res.data.forEach(list => {
                         state.lists.push(new List(list))
                     })
+                    state.lists.sort(Sort.byAttrDesc('created'))
                     state.listsOnLoad = false
                     resolve()
                 })
