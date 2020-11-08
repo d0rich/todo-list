@@ -25,6 +25,18 @@ export class List{
             this.plans.sort(Sort.byAttr('created'))
         })
     }
-
+    get undoneLocal(){
+        return this.plans.filter(plan => !plan.complete).length
+    }
+    get type(){
+        if (this.plans.length === 0) return 1
+        if (this.undoneLocal > 0) return 2
+        else return 3
+    }
+    get color(){
+        if (this.type === 1) return 'white'
+        if (this.type === 2) return '#b8ef8b'
+        else return '#cfcdcd'
+    }
     get link(){ return {name: 'List', params:{ list_id: this.id } } }
 }

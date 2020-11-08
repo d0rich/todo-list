@@ -1,12 +1,11 @@
 <template>
   <div class="list-wrap">
     <b-list-group class="lists">
-      <b-list-group-item v-for="list in lists" :key="list.id" >
+      <b-list-group-item v-for="list in lists" :key="list.id" :style="`background-color: ${list.color}`" >
         <div class="row no-gutters justify-content-between">
           <router-link :to="list.link" class="row no-gutters justify-content-between align-items-center">
             <div class="mx-1">{{list.title}}</div>
-            <div class="mx-1">Невыполнено: {{list.undone}}</div>
-            <div class="mx-1">Создано: {{DateToString(list.created)}}</div>
+            <div class="mx-1">Невыполнено: {{list.undoneLocal}}</div>
           </router-link>
           <b-button class="mx-1" variant="danger" @click="DelList(list)">Delete</b-button>
         </div>
