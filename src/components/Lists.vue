@@ -25,7 +25,6 @@
         <div class="row no-gutters justify-content-between">
           <router-link :to="list.link" class="row no-gutters justify-content-between align-items-center">
             <div class="mx-1">{{list.title}}</div>
-            <div class="mx-1">Невыполнено: {{list.undoneLocal}}</div>
           </router-link>
           <b-button class="mx-1" variant="danger" @click="ShowAcceptModal(list)">Delete</b-button>
         </div>

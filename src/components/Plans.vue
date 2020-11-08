@@ -10,13 +10,25 @@
             {{plan.title}}
           </b-checkbox>
           <div class="mx-1">Создано: {{DateToString(plan.created)}}</div>
+          <div class="h4 my-0 mx-1 ">
+            <b-icon v-if="plan.important" icon="exclamation-circle-fill" variant="danger"></b-icon>
+          </div>
         </div>
       </b-list-group-item>
     </b-list-group>
     <div class="px-1">
       <b-input placeholder="Введите план" v-model="newPlan.title" />
     </div>
-    <b-button class="align-self-end m-1" variant="primary" @click="NewPlan">Создать план</b-button>
+    <div class="row no-gutters align-items-center m-1 justify-content-end">
+      <b-form-checkbox
+          v-model="newPlan.important"
+          class="mx-1"
+      >
+        Срочно
+      </b-form-checkbox>
+      <b-button class="mx-1" variant="primary" @click="NewPlan">Создать план</b-button>
+    </div>
+
   </div>
 </template>
 
@@ -30,7 +42,7 @@ name: "Plans",
     return{
       newPlan: {
         title: '',
-        priority: 1
+        important: false
       }
     }
   },
@@ -53,13 +65,13 @@ name: "Plans",
   methods:{
     ...mapActions(['CreatePlan']),
     NewPlan(){
-      let newPlan = new Plan({...this.newPlan, list_id: this.$route.params.list_id})
+      let newPlan = new Plan({...this.newPlan, list_id: this.$route.params.list_id, priority: this.newPlan.important ? 99 : 1})
       this.CreatePlan(newPlan)
         .then(() => {
           this.list.GetPlans()
           this.newPlan = {
             title: '',
-            priority: 1
+            important: false
           }
         })
     }

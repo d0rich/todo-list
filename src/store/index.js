@@ -15,6 +15,10 @@ export default new Vuex.Store({
   mutations: {
       DeleteListLocally(state, list = new List({})){
           state.lists.splice(state.lists.indexOf(list), 1)
+      },
+      DeletePlanLocally(state, plan = new Plan({})){
+          state.lists.find(l => l.id === plan.list_id)
+              .plans.splice(state.lists.find(l => l.id === plan.list_id).plans.indexOf(plan), 1)
       }
   },
   actions: {

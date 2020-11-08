@@ -35,7 +35,9 @@ export class Plan{
                 this.complete = false
             })
         }
-
+    }
+    get important(){
+        return this.priority > 49
     }
 
 }
