@@ -65,7 +65,7 @@ name: "Plans",
   methods:{
     ...mapActions(['CreatePlan']),
     NewPlan(){
-      let newPlan = new Plan({...this.newPlan, list_id: this.$route.params.list_id, priority: this.newPlan.important ? 99 : 1})
+      let newPlan = new Plan({...this.newPlan, list_id: this.$route.params.list_id, priority: this.newPlan.important ? 5 : 1})
       this.CreatePlan(newPlan)
         .then(() => {
           this.list.GetPlans()

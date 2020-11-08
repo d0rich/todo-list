@@ -37,7 +37,7 @@ export class Plan{
         }
     }
     get important(){
-        return this.priority > 49
+        return this.priority > 3
     }
 
 }
