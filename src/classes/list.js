@@ -22,7 +22,7 @@ export class List{
             res.data.forEach(plan => {
                 this.plans.push(new Plan(plan))
             })
-            this.plans.sort(Sort.byAttr('created'))
+            this.plans.sort(Sort.byAttrDesc('created'))
         })
     }
     get undoneLocal(){

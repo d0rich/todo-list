@@ -30,7 +30,6 @@ name: "Plans",
     return{
       newPlan: {
         title: '',
-        list_id: this.$route.params.list_id,
         priority: 1
       }
     }
@@ -54,13 +53,12 @@ name: "Plans",
   methods:{
     ...mapActions(['CreatePlan']),
     NewPlan(){
-      let newPlan = new Plan(this.newPlan)
+      let newPlan = new Plan({...this.newPlan, list_id: this.$route.params.list_id})
       this.CreatePlan(newPlan)
         .then(() => {
           this.list.GetPlans()
           this.newPlan = {
             title: '',
-            list_id: this.$route.params.list_id,
             priority: 1
           }
         })

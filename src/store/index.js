@@ -28,7 +28,7 @@ export default new Vuex.Store({
                     res.data.forEach(list => {
                         state.lists.push(new List(list))
                     })
-                    state.lists.sort(Sort.byAttrDesc('created'))
+                    state.lists.sort(Sort.byAttr('title'))
                     state.listsOnLoad = false
                     resolve()
                 })
