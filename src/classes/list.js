@@ -17,12 +17,13 @@ export class List{
     }
 
     GetPlans(){
-        axios.get(`${store.state.todoUrl}/api/GetPlans/${this.id}`).then(res => {
-            this.plans = []
-            res.data.forEach(plan => {
-                this.plans.push(new Plan(plan))
-            })
-            this.plans.sort(Sort.byAttrDesc('created'))
+        axios.get(`${store.state.todoUrl}/api/to_do_list/plans/get/${this.id}`, store.getters.reqConfig)
+            .then(res => {
+                this.plans = []
+                res.data.forEach(plan => {
+                    this.plans.push(new Plan(plan))
+                })
+                this.plans.sort(Sort.byAttrDesc('created'))
         })
     }
     get undoneLocal(){

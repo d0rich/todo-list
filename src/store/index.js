@@ -8,6 +8,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     todoUrl: 'https://sa-mysite-anchousi.herokuapp.com',
+    token: '5|NM12M6KrGZ2tU2z7JqQax5ihIscrjVzBGnDuiTXa',
     plans: [],
     lists: [],
     listsOnLoad: false
@@ -22,10 +23,10 @@ export default new Vuex.Store({
       }
   },
   actions: {
-    GetLists({state}){
+    GetLists({state, getters }){
         return new Promise((resolve,reject) => {
             state.listsOnLoad = true
-            axios.get(`${state.todoUrl}/api/GetLists?count=99`)
+            axios.get(`${state.todoUrl}/api/to_do_list/lists/get?count=99`, getters.reqConfig)
                 .then(res => {
                     console.log(res)
                     state.lists = []
@@ -44,9 +45,9 @@ export default new Vuex.Store({
         })
 
     },
-    CreateList({state}, title){
+    CreateList({state, getters}, title){
         return new Promise(((resolve, reject) => {
-            axios.post(`${state.todoUrl}/api/CreateList`, {title})
+            axios.post(`${state.todoUrl}/api/to_do_list/lists/create`, {title}, getters.reqConfig)
                 .then(res => {
                     console.log(res)
                     resolve()
@@ -56,9 +57,9 @@ export default new Vuex.Store({
                 })
         }))
     },
-    DeleteList({state}, id){
+    DeleteList({state, getters}, id){
         return new Promise((resolve, reject) => {
-            axios.delete(`${state.todoUrl}/api/DeleteList/${id}`)
+            axios.delete(`${state.todoUrl}/api/to_do_list/lists/delete/${id}`, getters.reqConfig)
                 .then(res => {
                     console.log(res)
                     resolve()
@@ -68,9 +69,9 @@ export default new Vuex.Store({
                 })
         })
     },
-    CreatePlan({state}, plan = new Plan({title:'test', description:'test', priority: 1, list_id: 6})){
+    CreatePlan({state, getters}, plan = new Plan({title:'test', description:'test', priority: 1, list_id: 6})){
         return new Promise((resolve, reject) => {
-            axios.post(`${state.todoUrl}/api/CreatePlan/${plan.list_id}`, plan)
+            axios.post(`${state.todoUrl}/api/to_do_list/plans/create/${plan.list_id}`, plan, getters.reqConfig)
                 .then(res => {
                     console.log(res)
                     resolve()
@@ -85,6 +86,13 @@ export default new Vuex.Store({
     getters:{
       onLoad(state){
           return state.listsOnLoad
+      },
+      reqConfig(state){
+          return {
+              headers: {
+                  Authorization: `Bearer ${state.token}`
+              }
+          }
       }
     },
   modules: {
