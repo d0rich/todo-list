@@ -45,7 +45,7 @@ export default new Vuex.Store({
         })
 
     },
-    CreateList({state, getters}, title){
+      CreateList({state, getters}, title){
         return new Promise(((resolve, reject) => {
             axios.post(`${state.todoUrl}/api/to_do_list/lists/create`, {title}, getters.reqConfig)
                 .then(res => {
@@ -76,11 +76,23 @@ export default new Vuex.Store({
                     console.log(res)
                     resolve()
                 })
-                .catch(err =>{
+                .catch(err => {
                     reject(err)
                 })
         })
 
+    },
+    DeletePlan({state, getters}, {id}){
+        return new Promise(((resolve, reject) => {
+            axios.delete(`${state.todoUrl}/api/to_do_list/plans/delete/${id}`, getters.reqConfig)
+                .then(res => {
+                    console.log(res)
+                    resolve()
+                })
+                .catch(err => {
+                    reject(err)
+                })
+        }))
     }
   },
     getters:{
