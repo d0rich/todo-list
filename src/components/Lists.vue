@@ -31,10 +31,12 @@
 
       </b-list-group-item>
     </b-list-group>
-    <div class="px-1">
-      <b-input placeholder="Название списка" v-model="newListTitle" />
-    </div>
-    <b-button class="align-self-end m-1" variant="primary" @click="NewList">Создать список</b-button>
+    <form @submit.prevent="NewList" class="d-flex flex-column">
+      <div class="px-1">
+        <b-input placeholder="Название списка" v-model="newListTitle" />
+      </div>
+      <b-button class="align-self-end m-1" variant="primary" type="submit">Создать список</b-button>
+    </form>
   </div>
 </template>
 

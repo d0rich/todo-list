@@ -38,19 +38,21 @@
       </b-list-group-item>
     </b-list-group>
 
+    <form @submit.prevent="NewPlan">
+      <div class="px-1">
+        <b-input placeholder="Введите план" v-model="newPlan.title" />
+      </div>
+      <div class="row no-gutters align-items-center m-1 justify-content-end">
+        <b-form-checkbox
+            v-model="newPlan.important"
+            class="mx-1"
+        >
+          Срочно
+        </b-form-checkbox>
+        <b-button class="mx-1" variant="primary" type="submit">Создать план</b-button>
+      </div>
+    </form>
 
-    <div class="px-1">
-      <b-input placeholder="Введите план" v-model="newPlan.title" />
-    </div>
-    <div class="row no-gutters align-items-center m-1 justify-content-end">
-      <b-form-checkbox
-          v-model="newPlan.important"
-          class="mx-1"
-      >
-        Срочно
-      </b-form-checkbox>
-      <b-button class="mx-1" variant="primary" @click="NewPlan">Создать план</b-button>
-    </div>
 
   </div>
 </template>
