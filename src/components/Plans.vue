@@ -1,5 +1,5 @@
 <template>
-  <div class="plans-wrap">
+  <div class="plans-wrap bg-light">
     <b-modal
         v-model="AcceptModal.show"
         :title="AcceptModal.title"
@@ -22,22 +22,24 @@
     <b-button class="align-self-end m-1" variant="danger" @click="$router.push('/')">Закрыть</b-button>
     <div class="text-center h2">{{list.title}}</div>
 
-
+    <div class="hr"></div>
     <b-list-group class="plans">
-      <b-list-group-item v-for="plan in list.plans" :key="plan.id" >
-        <div class="row no-gutters justify-content-between">
-          <b-checkbox class="mx-1" @change="plan.MarkPlanComplete()" v-model="plan.complete" >
-            {{plan.title}}
-          </b-checkbox>
-          <div class="mx-1">Создано: {{DateToString(plan.created)}}</div>
-          <div class="h4 my-0 mx-1 ">
-            <b-icon v-if="plan.important" icon="exclamation-circle-fill" variant="danger"></b-icon>
+      <transition-group name="slide-fade">
+        <b-list-group-item v-for="plan in list.plans" :key="plan.id" >
+          <div class="row no-gutters justify-content-between">
+            <b-checkbox class="mx-1 d-flex align-items-center" @change="plan.MarkPlanComplete()" v-model="plan.complete" >
+              {{plan.title}}
+            </b-checkbox>
+            <div class="mx-1 d-flex align-items-center">Создано: {{DateToString(plan.created)}}</div>
+            <div class="h4 my-0 mx-1 d-flex align-items-center ">
+              <b-icon v-if="plan.important" icon="exclamation-circle-fill" variant="danger"></b-icon>
+            </div>
+            <b-button class="mx-1" variant="danger" @click="ShowAcceptModal(plan)">Delete</b-button>
           </div>
-          <b-button class="mx-1" variant="danger" @click="ShowAcceptModal(plan)">Delete</b-button>
-        </div>
-      </b-list-group-item>
+        </b-list-group-item>
+      </transition-group>
     </b-list-group>
-
+    <div class="hr"></div>
     <form @submit.prevent="NewPlan">
       <div class="px-1">
         <b-input placeholder="Введите план" v-model="newPlan.title" />
@@ -150,14 +152,19 @@ name: "Plans",
 
 <style scoped>
 .plans-wrap{
+  background-color: white;
   height: 80vh;
   display: flex;
   flex-direction: column;
-  border: solid #212121 3px;
-  border-radius: 10px;
   max-width: 800px;
+  border-radius: 3px;
+  padding: 10px;
+  -webkit-box-shadow: 18px 16px 27px 19px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 18px 16px 27px 19px rgba(34, 60, 80, 0.2);
+  box-shadow: 18px 16px 27px 19px rgba(34, 60, 80, 0.2);
 }
 .plans{
+  overflow-x: hidden;
   overflow-y: auto;
   height: 100%;
 }

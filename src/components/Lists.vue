@@ -1,5 +1,5 @@
 <template>
-  <div class="list-wrap">
+  <div class="list-wrap border-primary bg-light">
     <b-modal
         v-model="AcceptModal.show"
         :title="AcceptModal.title"
@@ -20,17 +20,21 @@
       <p class="text-danger">{{ErrorModal.message}}</p>
     </b-modal>
     <b-form-select class="my-3 mx-5" style="width: unset" v-model="filterID" :options="filters"></b-form-select>
+    <div class="hr" />
     <b-list-group class="lists">
-      <b-list-group-item v-for="list in listsFiltered" :key="list.id" :style="`background-color: ${list.color}`" >
-        <div class="row no-gutters justify-content-between">
-          <router-link :to="list.link" class="row no-gutters justify-content-between align-items-center">
-            <div class="mx-1">{{list.title}}</div>
-          </router-link>
-          <b-button class="mx-1" variant="danger" @click="ShowAcceptModal(list)">Delete</b-button>
-        </div>
+      <transition-group name="slide-fade">
+        <b-list-group-item v-for="list in listsFiltered" :key="list.id" :style="`background-color: ${list.color}; transition: all .3s ease`" >
+          <div class="row no-gutters justify-content-between">
+            <router-link :to="list.link" class="row no-gutters justify-content-between align-items-center">
+              <div class="mx-1">{{list.title}}</div>
+            </router-link>
+            <b-button class="mx-1" variant="danger" @click="ShowAcceptModal(list)">Delete</b-button>
+          </div>
 
-      </b-list-group-item>
+        </b-list-group-item>
+      </transition-group>
     </b-list-group>
+    <div class="hr"></div>
     <form @submit.prevent="NewList" class="d-flex flex-column">
       <div class="px-1">
         <b-input placeholder="Название списка" v-model="newListTitle" />
@@ -125,11 +129,16 @@ name: "Lists",
   max-width: 800px;
   display: flex;
   flex-direction: column;
-  border: solid #212121 3px;
-  border-radius: 10px;
+  border-radius: 3px;
+  padding: 10px;
+  -webkit-box-shadow: 18px 16px 27px 19px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 18px 16px 27px 19px rgba(34, 60, 80, 0.2);
+  box-shadow: 18px 16px 27px 19px rgba(34, 60, 80, 0.2);
 }
 .lists{
+  overflow-x: hidden;
   overflow-y: auto;
   height: 100%;
 }
+
 </style>
