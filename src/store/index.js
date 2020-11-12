@@ -26,7 +26,7 @@ export default new Vuex.Store({
     GetLists({state, getters }){
         return new Promise((resolve,reject) => {
             state.listsOnLoad = true
-            axios.get(`${state.todoUrl}/api/to_do_list/lists/get?count=99`, getters.reqConfig)
+            axios.get(`${state.todoUrl}/api/to_do/lists/get?count=99`, getters.reqConfig)
                 .then(res => {
                     console.log(res)
                     state.lists = []
