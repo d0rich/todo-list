@@ -8,7 +8,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     todoUrl: 'https://sa-mysite-anchousi.herokuapp.com',
-    token: '5|NM12M6KrGZ2tU2z7JqQax5ihIscrjVzBGnDuiTXa',
+    token: '1|XqkJHQC2Pocys7tiXsPQnFVSv0rCT2nyyp860syv',
     plans: [],
     lists: [],
     listsOnLoad: false
