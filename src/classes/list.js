@@ -5,13 +5,13 @@ export class List{
     constructor({ id = 1,
                     title = '',
                     undone = 0,
-                    date_create = new Date(),
-                    date_change = new Date() }){
+                    created_at = new Date(),
+                    updated_at = new Date() }){
         this.id = id
         this.title = title
         this.undone = undone
-        this.created = new Date(date_create)
-        this.changed = new Date(date_change)
+        this.created = new Date(created_at)
+        this.changed = new Date(updated_at)
         this.plans = []
         this.GetPlans()
     }

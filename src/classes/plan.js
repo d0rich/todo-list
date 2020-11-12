@@ -7,16 +7,16 @@ export class Plan{
                     description = '',
                     priority = 0,
                     complete = false,
-                    date_create = new Date(),
-                    date_change = new Date() }){
+                    created_at = new Date(),
+                    updated_at = new Date() }){
         this.id = id
         this.list_id = list_id
         this.title = title
         this.description = description
         this.priority = priority
         this.complete = complete
-        this.created = new Date(date_create)
-        this.changed = new Date(date_change)
+        this.created = new Date(created_at)
+        this.changed = new Date(updated_at)
     }
     MarkPlanComplete(){
         if (!this.complete){
