@@ -47,7 +47,7 @@ export default new Vuex.Store({
     },
       CreateList({state, getters}, title){
         return new Promise(((resolve, reject) => {
-            axios.post(`${state.todoUrl}/api/to_do_list/lists/create`, {title}, getters.reqConfig)
+            axios.post(`${state.todoUrl}/api/to_do/lists/create`, {title}, getters.reqConfig)
                 .then(res => {
                     console.log(res)
                     resolve()
@@ -59,7 +59,7 @@ export default new Vuex.Store({
     },
     DeleteList({state, getters}, id){
         return new Promise((resolve, reject) => {
-            axios.delete(`${state.todoUrl}/api/to_do_list/lists/delete/${id}`, getters.reqConfig)
+            axios.delete(`${state.todoUrl}/api/to_do/lists/delete/${id}`, getters.reqConfig)
                 .then(res => {
                     console.log(res)
                     resolve()
@@ -71,7 +71,7 @@ export default new Vuex.Store({
     },
     CreatePlan({state, getters}, plan = new Plan({title:'test', description:'test', priority: 1, list_id: 6})){
         return new Promise((resolve, reject) => {
-            axios.post(`${state.todoUrl}/api/to_do_list/plans/create/${plan.list_id}`, plan, getters.reqConfig)
+            axios.post(`${state.todoUrl}/api/to_do/plans/create/${plan.list_id}`, plan, getters.reqConfig)
                 .then(res => {
                     console.log(res)
                     resolve()
@@ -84,7 +84,7 @@ export default new Vuex.Store({
     },
     DeletePlan({state, getters}, {id}){
         return new Promise(((resolve, reject) => {
-            axios.delete(`${state.todoUrl}/api/to_do_list/plans/delete/${id}`, getters.reqConfig)
+            axios.delete(`${state.todoUrl}/api/to_do/plans/delete/${id}`, getters.reqConfig)
                 .then(res => {
                     console.log(res)
                     resolve()

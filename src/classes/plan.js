@@ -20,7 +20,7 @@ export class Plan{
     }
     MarkPlanComplete(){
         if (!this.complete){
-            axios.post(`${store.state.todoUrl}/api/to_do_list/plans/change/${this.id}/${this.list_id}`, this, store.getters.reqConfig)
+            axios.post(`${store.state.todoUrl}/api/to_do/plans/change/${this.id}/${this.list_id}`, this, store.getters.reqConfig)
                 .then(res => {
                     console.log(res)
                     this.complete = true
@@ -31,7 +31,7 @@ export class Plan{
 
         }
         else{
-            axios.post(`${store.state.todoUrl}/api/to_do_list/plans/change/${this.id}/${this.list_id}`, this, store.getters.reqConfig)
+            axios.post(`${store.state.todoUrl}/api/to_do/plans/change/${this.id}/${this.list_id}`, this, store.getters.reqConfig)
                 .then(res => {
                     console.log(res)
                     this.complete = false

@@ -17,7 +17,7 @@ export class List{
     }
 
     GetPlans(){
-        axios.get(`${store.state.todoUrl}/api/to_do_list/plans/get/${this.id}`, store.getters.reqConfig)
+        axios.get(`${store.state.todoUrl}/api/to_do/plans/get/${this.id}`, store.getters.reqConfig)
             .then(res => {
                 this.plans = []
                 res.data.forEach(plan => {
