@@ -40,6 +40,9 @@
         <b-input placeholder="Название списка" v-model="newListTitle" />
       </div>
       <b-button class="align-self-end m-1" variant="primary" type="submit">Создать список</b-button>
+      <span>&copy; 2020
+        <a href="https://d0rich.github.io" target="_blank">Nikolay Dorofeev (d0rich)</a>
+      </span>
     </form>
   </div>
 </template>
