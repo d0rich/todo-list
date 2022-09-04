@@ -13,5 +13,5 @@ jobs:
       uses: xRealNeon/VuePagesAction@1.0.1
       with:
         username: 'd0rich'
-        reponame: 'vue-weather'
+        reponame: 'todo-list'
         token: ${{ secrets.GITHUB_TOKEN }} # Leave this line unchanged
